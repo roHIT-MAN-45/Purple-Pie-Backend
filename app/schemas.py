@@ -5,12 +5,13 @@ from pydantic.types import conint
 
 # Create User Schema
 class UserCreate(BaseModel):
+    name : str
+    phone : str
     email : EmailStr
     password : str
 
-class UserResponse(BaseModel):
+class UserResponse(UserCreate):
     id : int
-    email : EmailStr
     created_at : datetime
 
     class Config :
@@ -24,6 +25,7 @@ class LoginUser(BaseModel):
 # Access token
 class Token(BaseModel):
     user_id : Optional[str] = None
+    name : str
     token : str
     token_type : str
 
